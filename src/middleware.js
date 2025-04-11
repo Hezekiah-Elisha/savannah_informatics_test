@@ -17,16 +17,21 @@ export default async function middleware(req) {
 
   console.log("Pathname:", req.nextUrl.pathname);
   const session = await auth(req);
+  console.log("Session:", session);
   const path = req.nextUrl.pathname;
   const isProtectedRoute = protectedRoutes.includes(path);
   const isPublicRoute = publicRoutes.includes(path);
 
-  if (session && isProtectedRoute) {
-    return NextResponse.redirect(new URL("/landing", req.url));
+  if (isProtectedRoute) {
+    if (session) {
+      return NextResponse.redirect(new URL("/", req.url));
+    }
   }
 
-  if (!session && isPublicRoute) {
-    return NextResponse.redirect(new URL("/", req.url));
+  if (isPublicRoute) {
+    if (!session) {
+      return NextResponse.redirect(new URL("/landing", req.url));
+    }
   }
 }
 
