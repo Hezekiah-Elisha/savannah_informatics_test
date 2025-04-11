@@ -1,6 +1,6 @@
 export default function Footer() {
   return (
-    <footer className="bg-secondary py-12">
+    <footer className="bg-secondary py-12 font-poppins">
       <div className="container mx-auto px-4">
         <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
           <div>
@@ -85,7 +85,13 @@ export default function Footer() {
           </div>
         </div>
         <div className="mt-12 pt-8 border-t text-center text-gray-600">
-          <p>&copy; 2024 YourSaaS. All rights reserved.</p>
+          <p>
+            &copy; 2025 Photos<span className="text-red-600">+</span>. All
+            rights reserved.
+          </p>
+          <p>
+            Built with <span className="text-red-600">❤️</span> by{" "} Hezekiah Elisha
+          </p>
         </div>
       </div>
     </footer>
