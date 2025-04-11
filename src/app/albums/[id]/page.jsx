@@ -6,6 +6,7 @@ import Image from "next/image";
 import { Card } from "@/components/ui/card";
 import { Library } from "lucide-react";
 import MyLoader from "@/components/MyLoader";
+import Link from "next/link";
 
 export default function AlbumPage() {
   const { id } = useParams();
@@ -104,23 +105,25 @@ export default function AlbumPage() {
                     key={photo.id}
                     className="p-4 hover:shadow-2xl transition-shadow"
                   >
-                    <Image
-                      src={photo.thumbnailUrl}
-                      alt={photo.title}
-                      height={1000}
-                      width={1000}
-                      unoptimized
-                      className=""
-                    />
-                    <p className="text-primary capitalize font-semibold font-monserrat">
-                      {photo.title}
-                    </p>
-                    <div className="text-primary flex flex-row items-center justify-start gap-1">
-                      <Library className="h-10 w-10 inline mr-1" />
-                      <p className="text-gray-500 text-xs">
-                        Album: {getPhotoAlbum(photo.albumId)}
+                    <Link href={`/photos/${photo.id}`}>
+                      <Image
+                        src={photo.thumbnailUrl}
+                        alt={photo.title}
+                        height={1000}
+                        width={1000}
+                        unoptimized
+                        className=""
+                      />
+                      <p className="text-primary capitalize font-semibold font-monserrat">
+                        {photo.title}
                       </p>
-                    </div>
+                      <div className="text-primary flex flex-row items-center justify-start gap-1">
+                        <Library className="h-10 w-10 inline mr-1" />
+                        <p className="text-gray-500 text-xs">
+                          Album: {getPhotoAlbum(photo.albumId)}
+                        </p>
+                      </div>
+                    </Link>
                   </Card>
                 ))}
               </div>
