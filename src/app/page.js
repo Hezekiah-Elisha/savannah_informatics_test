@@ -1,9 +1,11 @@
 "use client";
 import { instance } from "@/api";
+import MyLoader from "@/components/MyLoader";
 import {
   Card,
   CardContent,
   CardDescription,
+  CardFooter,
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
@@ -40,7 +42,9 @@ export default function Home() {
       <h1 className="font-monserrat uppercase text-primary">Available Users</h1>
       <hr className="my-4" />
       {isLoading ? (
-        <p>Loading...</p>
+        <div className="w-full flex flex-row justify-center align-middle">
+          <MyLoader />
+        </div>
       ) : (
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4 p-6">
           {users.map((user) => (
@@ -48,7 +52,7 @@ export default function Home() {
               className="p-4 hover:shadow-2xl transition-shadow"
               key={user.id}
             >
-              <Link href={"/users/" + user.id} className="">
+              <Link href={"/users/" + user.id} className="space-y-2">
                 <CardHeader>
                   <CardTitle className="text-lg font-monserrat text-primary">
                     {user.name}
@@ -61,14 +65,10 @@ export default function Home() {
                       <Mail className="h-4 w-4 inline mr-1" />
                       {user.email}
                     </p>
-                    <Link
-                      href={"https://" + user.website}
-                      target="_blank"
-                      className="text-sm text-gray-500 hover:underline hover:text-primary"
-                    >
+                    <span className="text-sm text-gray-500 hover:underline hover:text-primary">
                       <Rss className="h-4 w-4 inline mr-1 text-primary" />
                       {user.website}
-                    </Link>
+                    </span>
                   </div>
                   <div className="flex flex-row justify-between mt-4">
                     <div className="flex flex-row items-center">
@@ -77,12 +77,9 @@ export default function Home() {
                         {getNumberOfAlbums(user.id)} Albums
                       </p>
                     </div>
-                    <Link
-                      href={`/albums/${user.id}`}
-                      className="text-sm text-gray-500 hover:underline hover:text-primary"
-                    >
+                    <span className="text-sm text-gray-500 hover:underline hover:text-primary">
                       View Albums
-                    </Link>
+                    </span>
                   </div>
                   <div className="flex flex-col mt-4 bg-primary/10 p-2 rounded-md">
                     <h3 className="font-monserrat text-primary">
@@ -97,6 +94,11 @@ export default function Home() {
                     </p>
                   </div>
                 </CardContent>
+                <CardFooter className="w-full flex flex-row justify-end">
+                  <span className="text-sm text-gray-500 hover:underline hover:text-primary">
+                    View Profile
+                  </span>
+                </CardFooter>
               </Link>
             </Card>
           ))}

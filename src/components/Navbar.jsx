@@ -9,19 +9,19 @@ export default function Navbar() {
         </div>
         <div className="hidden md:flex items-center gap-8">
           <a
-            href="#features"
+            href="/"
             className="text-sm hover:text-primary transition-colors"
           >
             Home
           </a>
           <a
-            href="#pricing"
+            href="/albums"
             className="text-sm hover:text-primary transition-colors"
           >
             Albums
           </a>
           <a
-            href="#about"
+            href="/users"
             className="text-sm hover:text-primary transition-colors"
           >
             Users
