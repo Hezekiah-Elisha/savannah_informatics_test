@@ -7,10 +7,8 @@ import Footer from "../components/Footer";
 export default function page() {
   return (
     <div className="min-h-screen">
-      <Navbar />
       <Hero />
       <Features />
-      <Footer />
     </div>
   );
 }
