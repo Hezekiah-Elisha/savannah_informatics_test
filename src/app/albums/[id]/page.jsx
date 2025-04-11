@@ -26,9 +26,8 @@ export default function AlbumPage() {
       setError(error);
     }
   };
-  const getPhotoAlbum = (id) => {
-    const album = albums.find((album) => album.id === id);
-    // console.log(album);
+  const getPhotoAlbum = (albumId) => {
+    const album = albums.find((album) => album.id === Number(albumId));
     return album ? album.title : "Unknown Album";
   };
   const getUser = (id) => {
