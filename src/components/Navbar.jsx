@@ -2,27 +2,29 @@ import { Button } from "@/components/ui/button";
 
 export default function Navbar() {
   return (
-    <nav className="fixed w-full bg-white/80 backdrop-blur-md z-50 border-b">
-      <div className="container mx-auto px-4 h-16 flex items-center justify-between">
-        <div className="font-bold text-xl text-primary">YourSaaS</div>
+    <nav className="fixed w-full bg-white/80 backdrop-blur-md z-50 border-b font-monserrat">
+      <div className="container mx-auto px-4 h-16 flex items-center justify-between text-black">
+        <div className="font-bold text-xl text-primary">
+          Photos<span className="text-black">+</span>
+        </div>
         <div className="hidden md:flex items-center gap-8">
           <a
-            href="#features"
+            href="/"
             className="text-sm hover:text-primary transition-colors"
           >
-            Features
+            Home
           </a>
           <a
-            href="#pricing"
+            href="/albums"
             className="text-sm hover:text-primary transition-colors"
           >
-            Pricing
+            Albums
           </a>
           <a
-            href="#about"
+            href="/users"
             className="text-sm hover:text-primary transition-colors"
           >
-            About
+            Users
           </a>
         </div>
         <Button className="bg-primary hover:bg-primary/90">Get Started</Button>
