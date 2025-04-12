@@ -1,5 +1,6 @@
 import { auth } from "../auth";
 import { NextResponse } from "next/server";
+
 const protectedRoutes = [
   "/",
   "/photos",
@@ -13,26 +14,26 @@ const protectedRoutes = [
 const publicRoutes = ["/landing"];
 
 export default async function middleware(req) {
-  console.log("Middleware running");
-
-  console.log("Pathname:", req.nextUrl.pathname);
   const session = await auth(req);
-  console.log("Session:", session);
   const path = req.nextUrl.pathname;
-  const isProtectedRoute = protectedRoutes.includes(path);
-  const isPublicRoute = publicRoutes.includes(path);
 
-  if (isProtectedRoute) {
-    if (session) {
-      return NextResponse.redirect(new URL("/", req.url));
-    }
+  const isProtectedRoute = protectedRoutes.some((route) =>
+    path.startsWith(route)
+  );
+  const isPublicRoute = publicRoutes.some((route) => path.startsWith(route));
+
+  // Handle protected routes
+  if (isProtectedRoute && !session) {
+    return NextResponse.redirect(new URL("/landing", req.url));
   }
 
-  if (isPublicRoute) {
-    if (!session) {
-      return NextResponse.redirect(new URL("/landing", req.url));
-    }
+  // Handle public routes
+  if (isPublicRoute && session) {
+    return NextResponse.redirect(new URL("/", req.url));
   }
+
+  // Allow the request to proceed if no redirection is needed
+  return NextResponse.next();
 }
 
 export const config = {
